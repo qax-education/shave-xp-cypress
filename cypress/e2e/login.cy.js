@@ -7,11 +7,29 @@ import data from '../fixtures/users-login.json'
 describe('login', () => {
 
     context('quando submeto o formulário', () => {
-        it('deve logar com sucesso', () => {
+        it.only('deve logar com sucesso', () => {
+
+            // dado que eu tenho um NOVO usuário cadastrado
             const user = data.success
 
+            cy.request({
+                method: 'POST',
+                url: 'http://localhost:3333/users',
+                body: user
+            }).then(function(response){
+                expect(response.status).to.eq(201)
+            })
+
+            // quando submeto o form de login com esse usuário
             loginPage.submit(user.email, user.password)
+
+            // então devo ser logado com sucesso
             shaversPage.header.userShouldBeLoggedIn(user.name)
+
+            
+
+            
+            
         })
 
         it('não deve logar com senha incorreta', () => {

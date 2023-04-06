@@ -23,8 +23,8 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-import loginPage from '../support/pages/login'
-import shaversPage from '../support/pages/shavers'
+import loginPage from '../support/pages/views/login'
+import shaversPage from '../support/pages/views/shavers'
 
 Cypress.Commands.add('createUser', (user) => {
     cy.log(JSON.stringify(user))
